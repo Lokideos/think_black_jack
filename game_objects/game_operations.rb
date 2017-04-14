@@ -8,7 +8,7 @@ module GameOperations
   end
 
   def add_card(card)
-    self.hand << card
+    hand << card
   end
 
   def free_hand

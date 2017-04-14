@@ -1,10 +1,10 @@
 class Dealer
   include GameOperations
 
-  attr_reader :name, :bank, :hand  
-  
+  attr_reader :name, :bank, :hand
+
   def initialize
-    self.name = "The Dealer"
+    self.name = 'The Dealer'
     self.bank = 100
     self.hand = []
   end
