@@ -2,13 +2,14 @@
 # and main menu
 
 class ApplicationMain
-  attr_reader :ui
+  attr_reader :ui, :game
 
-  MAIN_MENU_CHOISES = {1 => :new_game, 2 => :help, 
-                       3 => :exit}
+  MAIN_MENU_CHOISES = { 1 => :new_game, 2 => :help,
+                        3 => :exit }.freeze
 
   def initialize
     self.ui = UiMain.new
+    self.game = ApplicationGame.new
   end
 
   def run
@@ -26,6 +27,7 @@ class ApplicationMain
   def main_menu
     loop do
       ui.show_menu
+      ui.menu_choice_prompt
       menu_choise = gets.chomp.to_i
       unless MAIN_MENU_CHOISES[menu_choise].nil?
         send MAIN_MENU_CHOISES[menu_choise]
@@ -35,19 +37,20 @@ class ApplicationMain
   end
 
   def new_game
-    p "new game"
+    game.run
+    p 'new game'
   end
 
   def help
-    #black jack game description
-    p "help"
+    # black jack game description
+    p 'help'
   end
 
   def exit
-    p "exit"
+    p 'exit'
   end
 
   private
 
-  attr_writer :ui
+  attr_writer :ui, :game
 end

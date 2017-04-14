@@ -19,12 +19,16 @@ class UiMain
   end
 
   def show_menu
-    puts "_______________________________________"
-    puts "1. NEW GAME"
-    puts "2. HELP"
-    puts "3. EXIT"
-    puts "_______________________________________"
+    puts '_______________________________________'
+    puts '1. NEW GAME'
+    puts '2. HELP'
+    puts '3. EXIT'
+    puts '_______________________________________'
     puts
+  end
+
+  def menu_choice_prompt
+    print 'Please select one of menu options: '
   end
 
   def wrong_input
