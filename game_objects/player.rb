@@ -4,15 +4,15 @@
 class Player
   include GameOperations
 
-  attr_accessor :name
-  attr_reader :bank, :hand
+  attr_reader :name, :bank, :hand
 
-  def initialize
+  def initialize(name)
+    self.name = name
     self.bank = 100
     self.hand = []
   end
 
   private
 
-  attr_writer :bank, :hand
+  attr_writer :name, :bank, :hand
 end
