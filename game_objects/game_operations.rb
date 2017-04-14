@@ -10,6 +10,12 @@ module GameOperations
     self.bank -= amount
   end
 
+  def add_cards(cards)
+    cards.each do |card|
+      hand << card
+    end
+  end
+
   def add_card(card)
     hand << card
   end

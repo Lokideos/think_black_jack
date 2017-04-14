@@ -12,4 +12,11 @@ class UiGame
   def input_name_msg
     print 'Please type in your name: '
   end
+
+  def exit_game_msg
+    puts 'Are you sure you want to exit this game?'
+    puts 'You current progres will not be saved in this case!'
+    puts "If so please type in 'exit' or 'q' to exit the game."
+    puts
+  end
 end
