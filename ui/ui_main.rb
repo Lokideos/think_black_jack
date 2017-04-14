@@ -17,4 +17,18 @@ class UiMain
     puts "Type in 'exit' to exit the program "\
     'or anything else to continue.'
   end
+
+  def show_menu
+    puts "_______________________________________"
+    puts "1. NEW GAME"
+    puts "2. HELP"
+    puts "3. EXIT"
+    puts "_______________________________________"
+    puts
+  end
+
+  def wrong_input
+    puts "You've provided wrong input. Please, try again."
+    puts
+  end
 end
