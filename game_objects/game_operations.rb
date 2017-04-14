@@ -1,3 +1,6 @@
+# This module contain same operations
+# for Player and Dealer classes
+
 module GameOperations
   def bank_add(amount)
     self.bank += amount
