@@ -2,7 +2,7 @@
 # for actual black jack gameplay
 
 class ApplicationGame
-  attr_reader :ui, :stash, :player, :dealer, :deck, :round
+  attr_reader :ui, :stash, :player, :dealer, :deck, :round, :exit_game
 
   def initialize
     self.ui = UiGame.new
@@ -23,19 +23,31 @@ class ApplicationGame
       round.start_game
 
       ui.exit_game_msg
-      exit_game = gets.chomp
-      break if exit_game == 'exit' || exit_game == 'q'
+      self.exit_game = gets.chomp
+      victory_check
+      break if self.exit_game == 'exit' || self.exit_game == 'q'
+    end
+  end
+
+  def victory_check
+    if player.bank_zero?
+      ui.player_victory_msg
+      self.exit_game = 'exit'
+    end
+    if dealer.bank_zero?
+      ui.player_defeat_msg
+      self.exit_game = 'exit'
     end
   end
 
   def create_game_objects(name)
     self.player = Player.new(name)
-    self.dealer = Dealer.new('The Dealer')
+    self.dealer = Dealer.new('THE DEALER')
     self.deck = Deck.new
-    self.round = Round.new(stash, player, dealer, deck, ui)
+    self.round = Round.new(stash, player, dealer, deck)
   end
 
   private
 
-  attr_writer :ui, :stash, :player, :dealer, :deck, :round
+  attr_writer :ui, :stash, :player, :dealer, :deck, :round, :exit_game
 end

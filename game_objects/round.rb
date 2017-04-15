@@ -5,38 +5,59 @@ class Round
 
   AMOUNT = 10
 
-  def initialize(stash, player, dealer, deck, ui)
+  PLAYER_ACTION = { 1 => :dealer_turn, 2 => :player_take_card,
+                    3 => :open_cards }.freeze
+
+  def initialize(stash, player, dealer, deck)
     self.stash = stash
     self.player = player
     self.dealer = dealer
     self.deck = deck
-    self.ui = ui
+    self.ui = UiRound.new
   end
 
   def start_game
-    # add cards to player's and dealer's hands
+    self.stash = 0
     deck.fill_deck
-    add_first_hand
+    free_hands
+    add_first_hands
     make_bet
     player_turn
-    dealer_turn
-    victory
-    # go to player turn
   end
 
   def player_turn
-    puts "Your hand: #{player.hand}"
-    puts 'Pass? Take card? Open card?'
+    ui.show_table(player, dealer)
+    ui.choice_msg
+    action = gets.chomp.to_i
+    send PLAYER_ACTION[action] unless PLAYER_ACTION[action].nil?
   end
 
-  def dealer_turn; end
+  def player_take_card
+    player.add_card(take_card)
+    dealer_turn
+  end
 
-  def victory; end
+  def dealer_turn
+    dealer.add_card(take_card) if dealer.score < 12
+    open_cards
+  end
+
+  def open_cards
+    if player.score > dealer.score && player.score <= 21
+      ui.victory_msg
+      player.bank_add(stash)
+    else
+      ui.defeat_msg
+      dealer.bank_add(stash)
+    end
+    ui.show_table_final(player, dealer)
+  end
 
   def take_card
     card_num = rand(deck.cards.length)
     card = deck.cards[card_num]
     deck.discard_card(deck.cards[card_num])
+    card
   end
 
   def first_hand
@@ -49,9 +70,14 @@ class Round
     first_hand
   end
 
-  def add_first_hand
+  def add_first_hands
     player.add_cards(first_hand)
     dealer.add_cards(first_hand)
+  end
+
+  def free_hands
+    player.free_hand
+    dealer.free_hand
   end
 
   def make_bet

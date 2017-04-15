@@ -19,4 +19,16 @@ class UiGame
     puts "If so please type in 'exit' or 'q' to exit the game."
     puts
   end
+
+  def player_victory_msg
+    puts 'Bank of your oponent is 0 meaning your victory is absolute!'
+    puts 'Congratulations!'
+    puts
+  end
+
+  def player_defeat_msg
+    puts "There is nothing left in your bank mining you've lost."
+    puts 'Better luck next time!'
+    puts
+  end
 end
