@@ -1,7 +1,12 @@
-# This module contain same operations
-# for Player and Dealer classes
+class GameSide
+  attr_reader :name, :bank, :hand
 
-module GameOperations
+  def initialize(name)
+    self.name = name
+    self.bank = 100
+    self.hand = []
+  end
+
   def bank_add(amount)
     self.bank += amount
   end
@@ -23,4 +28,8 @@ module GameOperations
   def free_hand
     self.hand = []
   end
+
+  private
+
+  attr_writer :name, :bank, :hand
 end

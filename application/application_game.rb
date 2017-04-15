@@ -30,9 +30,9 @@ class ApplicationGame
 
   def create_game_objects(name)
     self.player = Player.new(name)
-    self.dealer = Dealer.new
+    self.dealer = Dealer.new('The Dealer')
     self.deck = Deck.new
-    self.round = Round.new(stash, player, dealer, deck)
+    self.round = Round.new(stash, player, dealer, deck, ui)
   end
 
   private

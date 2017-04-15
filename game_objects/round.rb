@@ -5,11 +5,12 @@ class Round
 
   AMOUNT = 10
 
-  def initialize(stash, player, dealer, deck)
+  def initialize(stash, player, dealer, deck, ui)
     self.stash = stash
     self.player = player
     self.dealer = dealer
     self.deck = deck
+    self.ui = ui
   end
 
   def start_game
