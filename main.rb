@@ -9,6 +9,7 @@ require_relative 'game_objects/game_operations'
 require_relative 'game_objects/player'
 require_relative 'game_objects/dealer'
 require_relative 'game_objects/deck'
+require_relative 'game_objects/round'
 
 black_jack = ApplicationMain.new
 black_jack.run
