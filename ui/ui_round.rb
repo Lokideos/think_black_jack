@@ -82,4 +82,9 @@ class UiRound
     puts "YOU'VE BEEN DEFEATED! BETTER LUCK NEXT TIME!"
     puts
   end
+
+  def open_cards_exit_msg
+    puts 'Nicely done!'
+    puts
+  end
 end

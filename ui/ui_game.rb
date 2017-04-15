@@ -14,9 +14,11 @@ class UiGame
   end
 
   def exit_game_msg
-    puts 'Are you sure you want to exit this game?'
-    puts 'You current progres will not be saved in this case!'
-    puts "If so please type in 'exit' or 'q' to exit the game."
+    puts 'Round is over. If you want to exit the game on this state '\
+    "type in 'exit' or 'q'."
+    puts 'But in this case your current progres '\
+    'will not be saved.'
+    puts 'If you want to continue press any key.'
     puts
   end
 
@@ -27,7 +29,7 @@ class UiGame
   end
 
   def player_defeat_msg
-    puts "There is nothing left in your bank mining you've lost."
+    puts "There is nothing left in your bank meaning that you've lost."
     puts 'Better luck next time!'
     puts
   end

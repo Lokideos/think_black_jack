@@ -43,6 +43,7 @@ class Round
   end
 
   def open_cards
+    ui.show_table_final(player, dealer)
     if player.score > dealer.score && player.score <= 21
       ui.victory_msg
       player.bank_add(stash)
@@ -50,7 +51,7 @@ class Round
       ui.defeat_msg
       dealer.bank_add(stash)
     end
-    ui.show_table_final(player, dealer)
+    ui.open_cards_exit_msg
   end
 
   def take_card

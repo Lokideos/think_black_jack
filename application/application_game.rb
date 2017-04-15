@@ -22,20 +22,24 @@ class ApplicationGame
     loop do
       round.start_game
 
-      ui.exit_game_msg
-      self.exit_game = gets.chomp
       victory_check
+
+      unless player.bank_zero? || dealer.bank_zero?
+        ui.exit_game_msg
+        self.exit_game = gets.chomp
+      end
+
       break if self.exit_game == 'exit' || self.exit_game == 'q'
     end
   end
 
   def victory_check
     if player.bank_zero?
-      ui.player_victory_msg
+      ui.player_defeat_msg
       self.exit_game = 'exit'
     end
     if dealer.bank_zero?
-      ui.player_defeat_msg
+      ui.player_victory_msg
       self.exit_game = 'exit'
     end
   end

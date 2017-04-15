@@ -5,7 +5,7 @@ class GameSide
 
   def initialize(name)
     self.name = name
-    self.bank = 10
+    self.bank = 100
     self.hand = []
     self.score = 0
   end
