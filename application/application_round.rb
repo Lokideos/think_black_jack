@@ -1,6 +1,6 @@
-# This class was created for containing methods using for each round
+# This class is responsible for handling each round of the game
 
-class Round
+class ApplicationRound
   attr_reader :ui, :stash, :player, :dealer, :deck
 
   AMOUNT = 10
@@ -29,7 +29,8 @@ class Round
     ui.show_table(player, dealer)
     ui.choice_msg
     action = gets.chomp.to_i
-    send PLAYER_ACTION[action] unless PLAYER_ACTION[action].nil?
+    action = 1 if PLAYER_ACTION[action].nil?
+    send PLAYER_ACTION[action]
   end
 
   def player_take_card
@@ -44,9 +45,15 @@ class Round
 
   def open_cards
     ui.show_table_final(player, dealer)
-    if player.score > dealer.score && player.score <= 21
-      ui.victory_msg
-      player.bank_add(stash)
+    if player.score >= 21 && player.score > dealer.score
+      if player.score == dealer.score
+        ui.draw_msg
+        player.bank_add(stash / 2)
+        dealer.bank_add(stash / 2)
+      else
+        ui.victory_msg
+        player.bank_add(stash)
+      end
     else
       ui.defeat_msg
       dealer.bank_add(stash)

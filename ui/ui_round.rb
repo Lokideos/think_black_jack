@@ -83,6 +83,11 @@ class UiRound
     puts
   end
 
+  def draw_msg
+    puts 'DRAW!'
+    puts
+  end
+
   def open_cards_exit_msg
     puts 'Nicely done!'
     puts

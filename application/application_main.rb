@@ -38,17 +38,13 @@ class ApplicationMain
 
   def new_game
     game.run
-    # p 'new game'
   end
 
   def help
-    # black jack game description
-    # p 'help'
+    ui.show_help
   end
 
-  def exit
-    # p 'exit'
-  end
+  def exit; end
 
   private
 
