@@ -12,12 +12,12 @@ class ApplicationMain
     self.game = ApplicationGame.new
   end
 
-  def run    
+  def run
     ui.greetings
     loop do
       ui.good_luck
       main_menu
-      ui.exit_game_msg      
+      ui.exit_game_msg
       break if gets.chomp == 'exit'
     end
   end
