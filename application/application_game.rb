@@ -46,7 +46,7 @@ class ApplicationGame
 
   def game_init(name)
     self.player = Player.new(name)
-    self.dealer = Dealer.new('THE DEALER')
+    self.dealer = Dealer.new
     self.deck = Deck.new
     self.round = ApplicationRound.new(stash, player, dealer, deck)
   end

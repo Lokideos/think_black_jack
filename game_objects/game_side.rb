@@ -3,8 +3,7 @@
 class GameSide
   attr_reader :name, :bank, :hand, :score
 
-  def initialize(name)
-    self.name = name
+  def initialize(*_args)
     self.bank = 100
     self.hand = []
     self.score = 0

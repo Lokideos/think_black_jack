@@ -2,4 +2,8 @@
 # who represents enemy of player in this game.
 
 class Dealer < GameSide
+  def initialize
+    super
+    self.name = 'The Dealer'
+  end
 end
