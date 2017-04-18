@@ -13,7 +13,7 @@ class ApplicationGame
     ui.greetings
     ui.input_name_msg
     name = gets.chomp
-    create_game_objects(name)
+    game_init(name)
     initialize_game
   end
 
@@ -44,7 +44,7 @@ class ApplicationGame
     end
   end
 
-  def create_game_objects(name)
+  def game_init(name)
     self.player = Player.new(name)
     self.dealer = Dealer.new('THE DEALER')
     self.deck = Deck.new

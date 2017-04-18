@@ -45,7 +45,7 @@ class ApplicationRound
 
   def open_cards
     ui.show_table_final(player, dealer)
-    if player.score >= 21 && player.score > dealer.score
+    if player.score <= 21 && player.score > dealer.score
       if player.score == dealer.score
         ui.draw_msg
         player.bank_add(stash / 2)
