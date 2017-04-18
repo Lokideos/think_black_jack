@@ -1,6 +1,6 @@
 # Class containing attributes and basic methods for both dealer and player
 
-class GameSide
+class Game
   attr_reader :name, :bank, :hand, :score
 
   def initialize(*_args)
