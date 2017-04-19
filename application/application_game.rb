@@ -19,7 +19,6 @@ class ApplicationGame
   end
 
   def initialize_game
-    exit_game = ''
     loop do
       round.start_game
 

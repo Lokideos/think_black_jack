@@ -1,4 +1,5 @@
-# This class contan all needed methods and data for calculating score in black jack card game
+# This class contan all needed methods and data 
+# for calculating score in black jack card game
 
 class Score
   attr_reader :points
@@ -16,7 +17,7 @@ class Score
                      end
                    else
                      card_value
-                          end
+                   end
   end
 
   def ace?(card_value)
