@@ -1,26 +1,13 @@
 # Class containing attributes and basic methods for both dealer and player
 
 class Actor
-  attr_reader :name, :bank, :hand, :score
+  attr_reader :name, :hand, :score
 
-  def initialize(*_args)
-    self.bank = 100
+  def initialize(*_args)    
     self.hand = []
     self.score = 0
   end
-
-  def bank_add(amount)
-    self.bank += amount
-  end
-
-  def bank_subtruct(amount)
-    self.bank -= amount
-  end
-
-  def bank_zero?
-    self.bank <= 0
-  end
-
+  
   def add_cards(cards)
     cards.each { |card| add_card(card) }    
   end
@@ -64,5 +51,5 @@ class Actor
 
   private
 
-  attr_writer :name, :bank, :hand, :score
+  attr_writer :name, :hand, :score
 end
