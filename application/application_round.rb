@@ -26,12 +26,13 @@ class ApplicationRound
     deck.fill_deck
     free_hands
     add_first_hands
+    set_score
     make_bet
     player_turn
   end
 
   def player_turn
-    ui.show_table(player, dealer)
+    ui.show_table(player, dealer, player_bank, dealer_bank, player_score, dealer_score)
     ui.choice_msg
     action = gets.chomp.to_i
     action = 1 if PLAYER_ACTION[action].nil?
@@ -44,32 +45,34 @@ class ApplicationRound
   end
 
   def dealer_turn
-    dealer.add_card(take_card) if dealer.score < 12
+    dealer.add_card(take_card) if dealer_score.points < 12
     open_cards
   end
 
   def open_cards
-    ui.show_table_final(player, dealer)
+    reorder_cards
+    set_score
+    ui.show_table_final(player, dealer, player_bank, dealer_bank, player_score, dealer_score)
     victory_calculate
     ui.open_cards_exit_msg
   end
 
   def victory_calculate
-    if player.score <= 21
-      if player.score == dealer.score
+    if player_score.points <= 21
+      if player_score.points == dealer_score.points
         ui.draw_msg
-        player.bank_add(stash / 2)
-        dealer.bank_add(stash / 2)      
-      elsif player.score > dealer.score
+        player_bank.balance_add(stash / 2)
+        dealer_bank.balance_add(stash / 2)
+      elsif player_score.points > dealer_score.points
         ui.victory_msg
-        player.bank_add(stash)
+        player_bank.balance_add(stash)
       else
         ui.defeat_msg
-        dealer.bank_add(stash)
-      end                       
+        dealer_bank.balance_add(stash)
+      end
     else
       ui.defeat_msg
-      dealer.bank_add(stash)
+      dealer_bank.balance_add(stash)
     end
   end
 
@@ -96,10 +99,26 @@ class ApplicationRound
   end
 
   def set_score
-    self.player_score = 0
-    self.dealer_score = 0
-    self.player.hand.each { |card| self.player_score.add_score(card) }
-    self.dealer.hand.each { |card| self.dealer_score.add_score(card) }
+    player_score.points_zero!
+    dealer_score.points_zero!
+    player.hand.each { |card| player_score.add_score(card.value) }
+    dealer.hand.each { |card| dealer_score.add_score(card.value) }
+  end
+
+  # Neeeded for aces calculation
+  def reorder_cards
+    player.hand.each do |card|
+      if card.ace?
+        player.hand.delete(card)
+        player.hand << card
+      end
+    end
+    dealer.hand.each do |card|
+      if card.ace?
+        dealer.hand.delete(card)
+        dealer.hand << card
+      end
+    end
   end
 
   def free_hands

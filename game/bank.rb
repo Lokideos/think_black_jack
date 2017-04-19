@@ -16,7 +16,7 @@ class Bank
   end
 
   def balance_zero?
-    self.balance == 0
+    self.balance.zero?
   end
 
   private

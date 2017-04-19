@@ -19,7 +19,7 @@ class ApplicationGame
   end
 
   def initialize_game
-    exit_game = ""
+    exit_game = ''
     loop do
       round.start_game
 
@@ -53,7 +53,7 @@ class ApplicationGame
     self.player_score = Score.new
     self.dealer_score = Score.new
     self.deck = Deck.new
-    self.round = ApplicationRound.new(stash, deck, player, dealer,
+    self.round = ApplicationRound.new(stash, player, dealer, deck,
                                       player_bank, dealer_bank,
                                       player_score, dealer_score)
   end

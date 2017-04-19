@@ -17,4 +17,4 @@ require_relative 'game/card'
 require_relative 'game/deck'
 
 black_jack = ApplicationMain.new
-#black_jack.run
+black_jack.run

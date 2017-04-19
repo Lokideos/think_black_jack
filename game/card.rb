@@ -9,8 +9,11 @@ class Card
     self.value = value
   end
 
+  def ace?
+    value.is_a? Array
+  end
+
   private
 
   attr_writer :name, :value
-
 end

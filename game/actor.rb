@@ -4,23 +4,20 @@
 class Actor
   attr_reader :name, :hand
 
-  def initialize(*_args)    
+  def initialize(*_args)
     self.hand = []
-    self.score = 0
   end
-  
+
   def add_cards(cards)
-    cards.each { |card| add_card(card) }    
+    cards.each { |card| add_card(card) }
   end
 
   def add_card(card)
-    hand << card    
-  end  
-  
+    hand << card
+  end
 
   def free_hand
     self.hand = []
-    self.score = 0
   end
 
   private
