@@ -50,11 +50,11 @@ class ApplicationRound
 
   def open_cards
     ui.show_table_final(player, dealer)
-    victory?
+    victory_calculate
     ui.open_cards_exit_msg
   end
 
-  def victory? 
+  def victory_calculate
     if player.score <= 21
       if player.score == dealer.score
         ui.draw_msg
@@ -93,6 +93,13 @@ class ApplicationRound
   def add_first_hands
     player.add_cards(first_hand)
     dealer.add_cards(first_hand)
+  end
+
+  def set_score
+    self.player_score = 0
+    self.dealer_score = 0
+    self.player.hand.each { |card| self.player_score.add_score(card) }
+    self.dealer.hand.each { |card| self.dealer_score.add_score(card) }
   end
 
   def free_hands

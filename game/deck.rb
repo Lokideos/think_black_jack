@@ -18,13 +18,14 @@ class Deck
     self.cards = []
     CARDS_TEMPLATE.each do |card|
       SYMBOLS.each do |code|
-        cards << ["#{card[0]}#{code}", card[1]]
+        cards << Card.new("#{card[0]}#{code}", card[1])
       end
     end
   end
 
-  def discard_card(card)
-    cards.delete(card)
+  def discard_card(card_name)
+    card_to_del = cards.find { |card| card.name == card_name }
+    cards.delete(card_to_del)
   end
 
   private

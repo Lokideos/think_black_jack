@@ -15,24 +15,20 @@ class Score
                       ace_lower_value(card)
                     end
                   else
-                    card_value(card)
+                    card.value
                   end
   end
 
   def ace?(card)
-    card.is_a? Array
+    card.value.is_a? Array
   end
 
   def ace_lower_value(card)
-    card[1][0] if ace?(card)
+    card.value[0] if ace?(card)
   end
 
   def ace_higher_value(card)
-    card[1][1] if ace?(card)
-  end
-
-  def card_value(card)
-    card[1]
+    card.value[1] if ace?(card)
   end
 
   private
