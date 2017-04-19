@@ -1,3 +1,5 @@
+# Class contains all needed methods and data for bank in black jack
+
 class Bank
   attr_reader :balance
 

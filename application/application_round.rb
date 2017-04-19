@@ -2,17 +2,22 @@
 
 class ApplicationRound
   attr_reader :ui, :stash, :player, :dealer, :deck
+  attr_reader :player_bank, :dealer_bank, :player_score, :dealer_score
 
   AMOUNT = 10
 
   PLAYER_ACTION = { 1 => :dealer_turn, 2 => :player_take_card,
                     3 => :open_cards }.freeze
 
-  def initialize(stash, player, dealer, deck)
+  def initialize(stash, player, dealer, deck, player_bank, dealer_bank, player_score, dealer_score)
     self.stash = stash
     self.player = player
     self.dealer = dealer
     self.deck = deck
+    self.player_bank = player_bank
+    self.dealer_bank = dealer_bank
+    self.player_score = player_score
+    self.dealer_score = dealer_score
     self.ui = UiRound.new
   end
 
@@ -96,12 +101,13 @@ class ApplicationRound
   end
 
   def make_bet
-    player.bank_subtruct(AMOUNT)
-    dealer.bank_subtruct(AMOUNT)
+    player_bank.balance_subtruct(AMOUNT)
+    dealer_bank.balance_subtruct(AMOUNT)
     self.stash += AMOUNT * 2
   end
 
   private
 
   attr_writer :ui, :stash, :player, :dealer, :deck
+  attr_writer :player_bank, :dealer_bank, :player_score, :dealer_score
 end
