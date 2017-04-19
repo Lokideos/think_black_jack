@@ -45,20 +45,27 @@ class ApplicationRound
 
   def open_cards
     ui.show_table_final(player, dealer)
-    if player.score <= 21 && player.score > dealer.score
+    victory?
+    ui.open_cards_exit_msg
+  end
+
+  def victory? 
+    if player.score <= 21
       if player.score == dealer.score
         ui.draw_msg
         player.bank_add(stash / 2)
-        dealer.bank_add(stash / 2)
-      else
+        dealer.bank_add(stash / 2)      
+      elsif player.score > dealer.score
         ui.victory_msg
         player.bank_add(stash)
-      end
+      else
+        ui.defeat_msg
+        dealer.bank_add(stash)
+      end                       
     else
       ui.defeat_msg
       dealer.bank_add(stash)
     end
-    ui.open_cards_exit_msg
   end
 
   def take_card

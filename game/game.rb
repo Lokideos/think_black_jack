@@ -22,31 +22,39 @@ class Game
   end
 
   def add_cards(cards)
-    cards.each do |card|
-      hand << card
-      self.score += if card[1].is_a? Array
-                      if score + card[1][1] < 21
-                        card[1][1]
-                      else
-                        card[1][0]
-                      end
-                    else
-                      card[1]
-                    end
-    end
+    cards.each { |card| add_card(card) }    
   end
 
   def add_card(card)
-    hand << card
-    self.score += if card[1].is_a? Array
-                    if self.score + card[1][1] < 21
-                      card[1][1]
+    hand << card    
+  end
+
+  def add_score(card)
+    self.score += if ace?(card)
+                    if self.score + ace_higher_value(card) < 21
+                      ace_higher_value(card)
                     else
-                      card[1][0]
+                      ace_lower_value(card)
                     end
                   else
-                    card[1]
+                    card_value(card)
                   end
+  end
+
+  def ace?(card)
+    card.is_a? Array
+  end
+
+  def ace_lower_value(card)
+    card[1][0] if ace?(card)
+  end
+
+  def ace_higher_value(card)
+    card[1][1] if ace?(card)
+  end
+
+  def card_value(card)
+    card[1]
   end
 
   def free_hand
