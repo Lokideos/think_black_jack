@@ -1,4 +1,4 @@
-# This class contan all needed methods and data 
+# This class contan all needed methods and data
 # for calculating score in black jack card game
 
 class Score

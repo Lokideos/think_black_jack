@@ -16,5 +16,5 @@ require_relative 'game/dealer'
 require_relative 'game/card'
 require_relative 'game/deck'
 
-black_jack = ApplicationMain.new
+black_jack = Application::Main.new
 black_jack.run
